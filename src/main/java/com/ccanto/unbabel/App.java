@@ -1,12 +1,10 @@
-package app;
+package com.ccanto.unbabel;
 
-import controller.TranslationController;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = TranslationController.class)
 
 public class App {
 
