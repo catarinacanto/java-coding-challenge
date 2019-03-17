@@ -9,6 +9,7 @@ public class TranslationResponse {
 	private String text;
 	private String text_format;
 	private String uid;
+	private String translatedText;
 
 	public long getOrder_number() {
 		return order_number;
@@ -74,8 +75,16 @@ public class TranslationResponse {
 		this.uid = uid;
 	}
 
+	public String getTranslatedText() {
+		return translatedText;
+	}
+
+	public void setTranslatedText(String translatedText) {
+		this.translatedText = translatedText;
+	}
+
 	@Override
 	public String toString() {
-		return "TranslationResponse{" + "order_number=" + order_number + ", price=" + price + ", source_language='" + source_language + '\'' + ", status='" + status + '\'' + ", target_language='" + target_language + '\'' + ", text='" + text + '\'' + ", text_format='" + text_format + '\'' + ", uid='" + uid + '\'' + '}';
+		return "TranslationResponse{" + "order_number=" + order_number + ", price=" + price + ", source_language='" + source_language + '\'' + ", status='" + status + '\'' + ", target_language='" + target_language + '\'' + ", text='" + text + '\'' + ", text_format='" + text_format + '\'' + ", uid='" + uid + '\'' + ", translatedText='" + translatedText + '\'' + '}';
 	}
 }

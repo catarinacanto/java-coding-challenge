@@ -1,45 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;
-        }
-    </style>
-</head>
-<body>
-<h1>Translation App</h1>
-<form target="_parent" action="/translate" method="post">
-    Text to translate:<br>
-    <input type="text" name="text"><br>
-    <p>Translate from:</p>
-    <select name="source_language">
-        <option value="en">English</option>
-        <option value="pt">Portuguese</option>
-        <option value="sp">Spanish</option>
-        <option value="it">Italian</option>
-    </select>
-    <p>Translate to:</p>
-    <select name="target_language">
-        <option value="en">English</option>
-        <option value="pt">Portuguese</option>
-        <option value="sp">Spanish</option>
-        <option value="it">Italian</option>
-    </select>
-    <table style="width:50%">
-        <tr>
-            <th>From Language</th>
-            <th>Original Text</th>
-            <th>To Language</th>
-            <th>Translated Text</th>
-            <th>Status</th>
-        </tr>
-    </table>
-    <input type="submit" value="Submit">
-</form>
-</body>
+ <head> 
+  <title>Unbabel</title> 
+  <meta charset="UTF-8"> 
+  <link rel="stylesheet" href="style.css"> 
+ </head> 
+ <body> 
+  <h1 title="translation_h1">Translation App</h1> 
+  <form action="/translate" method="post">
+    Text to translate: 
+   <br> 
+   <input type="text" name="text"> 
+   <br> 
+   <p>Translate from:</p> 
+   <select name="source_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
+   <p>Translate to:</p> 
+   <select name="target_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
+   <table class="table" style="width:50%"> 
+    <tbody> 
+     <tr> 
+      <th>From Language</th> 
+      <th>Original Text</th> 
+      <th>To Language</th> 
+      <th>Translated Text</th> 
+      <th>Status</th> 
+     </tr> 
+    </tbody> 
+    <tbody uid="31e1c63451"> 
+     <tr> 
+      <td>en</td> 
+      <td>hello</td> 
+      <td>pt</td> 
+      <td translated="">Olá</td> 
+      <td status="new">completed</td> 
+     </tr> 
+    </tbody> 
+    <tbody uid="a1f429c8a1"> 
+     <tr> 
+      <td>en</td> 
+      <td>how are you?</td> 
+      <td>pt</td> 
+      <td translated="">como você está?</td> 
+      <td status="new">completed</td> 
+     </tr> 
+    </tbody> 
+    <tbody uid="1defc263e7"> 
+     <tr> 
+      <td>en</td> 
+      <td>hello</td> 
+      <td>pt</td> 
+      <td translated=""></td> 
+      <td status="new">new</td> 
+     </tr> 
+    </tbody> 
+    <tbody uid="d0b394ee7e"> 
+     <tr>
+      <td>en</td> 
+      <td>hello</td> 
+      <td>pt</td> 
+      <td translated=""></td> 
+      <td status="new">new</td> 
+     </tr>
+    </tbody> 
+   </table> 
+   <input type="submit" value="Submit"> 
+  </form> 
+  <form action="/getTranslation" method="get"> 
+   <input type="submit" value="Update"> 
+  </form> 
+ </body>
 </html>
