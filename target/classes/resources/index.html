@@ -5,7 +5,6 @@
         table, th, td {
             border: 1px solid black;
         }
-
         th, td {
             padding: 5px;
             text-align: left;
@@ -14,15 +13,15 @@
 </head>
 <body>
 <h1>Translation App</h1>
-<form action="/translate" method="get">
+<form action="/translate" method="post">
     Text to translate:<br>
     <input type="text" name="text"><br>
     <p>Translate to:</p>
     <select name="language">
         <option value="en">English</option>
         <option value="pt">Portuguese</option>
-        <option value="spanish">Spanish</option>
-        <option value="italian">Italian</option>
+        <option value="sp">Spanish</option>
+        <option value="it">Italian</option>
     </select>
     <table style="width:50%">
         <tr>

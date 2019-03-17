@@ -1,2 +1,3 @@
-com/ccanto/unbabel/controllers/TranslationController.class
 com/ccanto/unbabel/App.class
+com/ccanto/unbabel/controllers/TranslationController.class
+com/ccanto/unbabel/services/translationService/TranslationService.class
