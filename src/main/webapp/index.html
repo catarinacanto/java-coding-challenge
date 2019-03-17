@@ -13,11 +13,18 @@
 </head>
 <body>
 <h1>Translation App</h1>
-<form action="/translate" method="post">
+<form target="_parent" action="/translate" method="post">
     Text to translate:<br>
     <input type="text" name="text"><br>
+    <p>Translate from:</p>
+    <select name="source_language">
+        <option value="en">English</option>
+        <option value="pt">Portuguese</option>
+        <option value="sp">Spanish</option>
+        <option value="it">Italian</option>
+    </select>
     <p>Translate to:</p>
-    <select name="language">
+    <select name="target_language">
         <option value="en">English</option>
         <option value="pt">Portuguese</option>
         <option value="sp">Spanish</option>
