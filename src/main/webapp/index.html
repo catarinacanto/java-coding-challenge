@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="style.css"> 
  </head> 
  <body> 
-  <h1>Unbabel</h1> 
+  <h1>Unbabel</h1>
+  <div class="form">
   <form action="/translate" method="post"> 
    <div class="text-input"> 
     <input type="text" id="input1" name="text" placeholder="Insert text to translate here"> 
@@ -37,17 +38,22 @@
    </div> 
    <div class="button"> 
     <input type="submit" value="Submit"> 
-   </div> 
-  </form> 
-  <form action="/getTranslation" method="get"> 
+   </div>
+  </form>
+  </div>
+  <div class="form">
+  <form action="/getTranslation" method="get">
    <div class="button"> 
     <input type="submit" value="Update"> 
    </div> 
-  </form> 
+  </form>
+  </div>
+  <div class="form">
   <form action="/delete"> 
    <div class="button"> 
     <input type="submit" value="Delete"> 
    </div> 
   </form> 
+  </div>
  </body>
 </html>
