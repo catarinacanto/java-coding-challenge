@@ -1,60 +1,68 @@
 <!doctype html>
 <html>
- <head>
-  <title>Unbabel</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+ <head> 
+  <title>Unbabel</title> 
+  <meta charset="UTF-8"> 
+  <link rel="stylesheet" href="style.css"> 
+  <script src="main.js"></script>
  </head>
  <body>
-  <div class="header">
+  <div class="header"> 
    <h1>Unbabel</h1>
   </div>
-  <div class="form">
-   <form action="/translate" method="post">
-    <div class="text-input">
-     <input type="text" id="input1" name="text" placeholder="Insert text to translate here">
-     <label for="input1">Translate</label>
-    </div>
-    <div class="languages">
-     <div class="left">
-      <label for="source_language">From</label>
-      <select id="source_language" name="source_language" placeholder="From"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="es">Spanish</option> <option value="fr">French</option> </select>
-     </div>
-     <div class="right">
-      <label for="target_language">To</label>
-      <select id="target_language" name="target_language"> <option value="pt">Portuguese</option> <option value="en">English</option> <option value="es">Spanish</option> <option value="fr">French</option> </select>
-     </div>
-    </div>
-    <div class="table-wrapper">
-     <table class="table" style="width:50%">
-      <thead>
-       <tr>
-        <th>From</th>
-        <th>Original</th>
-        <th>To</th>
-        <th>Translated</th>
-        <th>Status</th>
-       </tr>
-      </thead>
-     </table>
-    </div>
-    <div class="button">
-     <input type="submit" value="Submit">
-    </div>
+  <div class="form"> 
+   <form action="/translate" method="post"> 
+    <div class="text-input"> 
+     <input type="text" id="input1" name="text" placeholder="Insert text to translate here"> 
+     <label for="input1">Translate</label> 
+    </div> 
+    <div class="languages"> 
+     <div class="left"> 
+      <label for="source_language">From</label> 
+      <select id="source_language" name="source_language" placeholder="From" onchange="selectFirstOption()"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="es">Spanish</option> <option value="fr">French</option> </select> 
+     </div> 
+     <div class="right"> 
+      <label for="target_language">To</label> 
+      <select id="target_language" name="target_language"> <option value="pt">Portuguese</option> <option value="en">English</option> <option value="es">Spanish</option> <option value="fr">French</option> </select> 
+     </div> 
+    </div> 
+    <div class="table-wrapper"> 
+     <table class="table" style="width:50%"> 
+      <thead> 
+       <tr> 
+        <th>From</th> 
+        <th>Original</th> 
+        <th>To</th> 
+        <th>Translated</th> 
+        <th>Status</th> 
+       </tr> 
+      </thead> 
+      <tbody uid="4c444be54d">
+       <td>en</td>
+       <td>hello</td>
+       <td>fr</td>
+       <td translated=""></td>
+       <td status="new">new</td>
+      </tbody>
+     </table> 
+    </div> 
+    <div class="submit">
+     <input type="submit" value="Submit"> 
+    </div> 
    </form>
   </div>
-  <div class="form">
-   <form action="/getTranslation" method="get">
-    <div class="button">
-     <input type="submit" value="Update">
-    </div>
+  <div class="form"> 
+   <form action="/getTranslation" method="get"> 
+    <div class="update">
+     <input type="submit" value="Update"> 
+    </div> 
    </form>
   </div>
-  <div class="form">
-   <form action="/delete">
-    <div class="button">
+  <div class="form"> 
+   <form action="/delete"> 
+    <div class="delete">
      <input type="submit" value="Delete">
-    </div>
+    </div> 
    </form>
   </div>
  </body>
