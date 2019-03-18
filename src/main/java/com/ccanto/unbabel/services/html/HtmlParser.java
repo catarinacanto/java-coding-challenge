@@ -1,7 +1,7 @@
 package com.ccanto.unbabel.services.html;
 
 import com.ccanto.unbabel.constants.ConstantsEnum;
-import com.ccanto.unbabel.models.TranslationResponse;
+import com.ccanto.unbabel.dataacess.TranslationResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

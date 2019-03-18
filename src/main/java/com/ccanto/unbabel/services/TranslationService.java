@@ -1,7 +1,7 @@
 package com.ccanto.unbabel.services;
 
 import com.ccanto.unbabel.constants.ConstantsEnum;
-import com.ccanto.unbabel.models.TranslationResponse;
+import com.ccanto.unbabel.dataacess.TranslationResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

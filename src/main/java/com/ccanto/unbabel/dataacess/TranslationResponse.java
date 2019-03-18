@@ -1,14 +1,29 @@
-package com.ccanto.unbabel.models;
+package com.ccanto.unbabel.dataacess;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class TranslationResponse {
-	private long order_number;
-	private double price;
-	private String source_language;
-	private String status;
-	private String target_language;
-	private String text;
-	private String text_format;
+	@Id
 	private String uid;
+	@Column
+	private long order_number;
+	@Column
+	private double price;
+	@Column(nullable = false)
+	private String source_language;
+	@Column
+	private String status;
+	@Column(nullable = false)
+	private String target_language;
+	@Column(nullable = false)
+	private String text;
+	@Column
+	private String text_format;
+	@Column
 	private String translatedText;
 
 	public long getOrder_number() {

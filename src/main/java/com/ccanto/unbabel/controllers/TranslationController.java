@@ -1,6 +1,7 @@
 package com.ccanto.unbabel.controllers;
 
-import com.ccanto.unbabel.models.TranslationResponse;
+import com.ccanto.unbabel.dataacess.TranslationRepository;
+import com.ccanto.unbabel.dataacess.TranslationResponse;
 import com.ccanto.unbabel.services.TranslationService;
 import com.ccanto.unbabel.services.html.HtmlWriterService;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,9 @@ public class TranslationController {
 	private TranslationService translationService;
 
 	@Autowired
+	private TranslationRepository repository;
+
+	@Autowired
 	private HtmlWriterService htmlWriter;
 	private Logger log = LogManager.getLogger(TranslationController.class);
 
@@ -33,6 +37,7 @@ public class TranslationController {
 		try {
 			response = translationService.execute(text, sourceLanguage, targetLanguage);
 			responseList.add(response);
+			repository.save(response);
 			htmlWriter.generatePage(response);
 		} catch (IOException e) {
 			log.debug(e.getMessage());

@@ -1,6 +1,6 @@
 package com.ccanto.unbabel.services.html;
 
-import com.ccanto.unbabel.models.TranslationResponse;
+import com.ccanto.unbabel.dataacess.TranslationResponse;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
