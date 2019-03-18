@@ -12,13 +12,11 @@ import org.springframework.stereotype.Service;
 public class HtmlParser {
 
 	private Document doc;
-	private Element table;
-	private Element tBody;
 
 	public String parse(String html, TranslationResponse response) {
+		Element table = doc.getElementsByTag("table").get(0);
 		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
-		table = doc.getElementsByTag("table").get(0);
-		tBody = table.appendElement("tbody").attr("uid", response.getUid());
+		Element tBody = table.appendElement("tbody").attr("uid", response.getUid());
 		tBody.appendElement("td").text(response.getSource_language());
 		tBody.appendElement("td").text(response.getText());
 		tBody.appendElement("td").text(response.getTarget_language());

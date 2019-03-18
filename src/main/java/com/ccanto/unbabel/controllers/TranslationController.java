@@ -3,6 +3,8 @@ package com.ccanto.unbabel.controllers;
 import com.ccanto.unbabel.models.TranslationResponse;
 import com.ccanto.unbabel.services.TranslationService;
 import com.ccanto.unbabel.services.html.HtmlWriterService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ public class TranslationController {
 
 	@Autowired
 	private HtmlWriterService htmlWriter;
+	private Logger log = LogManager.getLogger(TranslationController.class);
 
 	private List<TranslationResponse> responseList = new ArrayList<>();
 
@@ -32,7 +35,7 @@ public class TranslationController {
 			responseList.add(response);
 			htmlWriter.generatePage(response);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.debug(e.getMessage());
 		}
 		return new RedirectView("/");
 	}

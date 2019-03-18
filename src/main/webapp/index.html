@@ -19,17 +19,17 @@
     </div> 
     <div class="right"> 
      <label for="target_language">To</label> 
-     <select id="target_language" name="target_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
+     <select id="target_language" name="target_language"> <option value="pt">Portuguese</option> <option value="en">English</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
     </div> 
    </div> 
    <div class="table-wrapper"> 
     <table class="table" style="width:50%"> 
      <thead> 
       <tr> 
-       <th>From Language</th> 
-       <th>Original Text</th> 
-       <th>To Language</th> 
-       <th>Translated Text</th> 
+       <th>From</th> 
+       <th>Original</th> 
+       <th>To</th> 
+       <th>Translated</th> 
        <th>Status</th> 
       </tr> 
      </thead> 
@@ -39,6 +39,15 @@
        <td>hello</td> 
        <td>pt</td> 
        <td translated="">Olá</td> 
+       <td status="new">completed</td> 
+      </tr> 
+     </tbody> 
+     <tbody uid="fe4671fc86"> 
+      <tr> 
+       <td>en</td> 
+       <td>bye</td> 
+       <td>pt</td> 
+       <td translated="">tchau</td> 
        <td status="new">completed</td> 
       </tr> 
      </tbody> 
@@ -53,5 +62,8 @@
     <input type="submit" tabindex="0" value="Update"> 
    </div> 
   </form> 
+  <div class="footer"> 
+   <p></p> 
+  </div> 
  </body>
 </html>
