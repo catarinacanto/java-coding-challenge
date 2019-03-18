@@ -32,32 +32,7 @@
        <th>Translated</th> 
        <th>Status</th> 
       </tr> 
-     </thead> 
-     <tbody uid="34a9dc08e0"> 
-      <tr> 
-       <td>en</td> 
-       <td>hello</td> 
-       <td>pt</td> 
-       <td translated="">Olá</td> 
-       <td status="new">completed</td> 
-      </tr> 
-     </tbody> 
-     <tbody uid="fe4671fc86"> 
-      <tr> 
-       <td>en</td> 
-       <td>bye</td> 
-       <td>pt</td> 
-       <td translated="">tchau</td> 
-       <td status="new">completed</td> 
-      </tr> 
-     </tbody> 
-     <tbody uid="6665d8865e">
-      <td>en</td>
-      <td>hello</td>
-      <td>pt</td>
-      <td translated=""></td>
-      <td status="new">new</td>
-     </tbody>
+     </thead>  
     </table> 
    </div> 
    <div class="button"> 
@@ -66,11 +41,13 @@
   </form> 
   <form action="/getTranslation" method="get"> 
    <div class="button"> 
-    <input type="submit" tabindex="0" value="Update"> 
+    <input type="submit" value="Update"> 
    </div> 
   </form> 
-  <div class="footer"> 
-   <p></p> 
-  </div> 
+  <form action="/delete"> 
+   <div class="button"> 
+    <input type="submit" value="Delete"> 
+   </div> 
+  </form> 
  </body>
 </html>

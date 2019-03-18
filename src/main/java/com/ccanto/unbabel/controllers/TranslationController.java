@@ -30,9 +30,6 @@ public class TranslationController {
 	@RequestMapping(value = "/translate", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
 	public RedirectView getTextToTranslate(@RequestParam(value = "text") String text, @RequestParam(value = "source_language") String sourceLanguage, @RequestParam(value = "target_language") String targetLanguage) {
 		TranslationResponse response = null;
-		if (text == null){
-			log.error("EMPTY");
-		}
 		try {
 			response = translationService.execute(text, sourceLanguage, targetLanguage);
 			responseList.add(response);
@@ -51,7 +48,20 @@ public class TranslationController {
 				htmlWriter.generatePage(newResponse);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.debug(e.getMessage());
+		}
+		return new RedirectView("/");
+	}
+
+	@RequestMapping(value = "/delete")
+	public RedirectView delete(){
+		try {
+			for (TranslationResponse response : responseList) {
+				TranslationResponse newResponse = translationService.execute(response.getUid());
+				htmlWriter.delete(newResponse);
+			}
+		} catch (IOException e) {
+			log.debug(e.getMessage());
 		}
 		return new RedirectView("/");
 	}

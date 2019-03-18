@@ -3,6 +3,8 @@ package com.ccanto.unbabel.services;
 import com.ccanto.unbabel.constants.ConstantsEnum;
 import com.ccanto.unbabel.models.TranslationResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpMethod;
@@ -15,6 +17,8 @@ import java.net.URL;
 
 @Service
 public class TranslationService {
+
+	private Logger log = LogManager.getLogger(TranslationService.class);
 
 
 	public TranslationResponse execute(String uid) throws IOException {
@@ -51,7 +55,7 @@ public class TranslationService {
 			request.put(ConstantsEnum.TARGET_LANGUAGE.getValue(), targetLanguage);
 
 		} catch (JSONException e) {
-			e.getMessage();
+			log.debug(e.getMessage());
 		}
 		return request;
 	}

@@ -41,4 +41,18 @@ public class HtmlParser {
 
 		return doc.html();
 	}
+
+	public String delete(String html, TranslationResponse response) {
+		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
+		Elements tbody = doc.getElementsByTag("tbody");
+		for (Element body : tbody) {
+			Elements translation = body.getElementsByAttributeValue("uid", response.getUid());
+			for (Element element : translation) {
+				element.remove();
+			}
+		}
+		return doc.html();
+	}
+
+
 }
