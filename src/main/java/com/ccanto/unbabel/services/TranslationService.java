@@ -18,7 +18,7 @@ public class TranslationService {
 
 
 	public TranslationResponse execute(String uid) throws IOException {
-		URL url = new URL(ConstantsEnum.SANDBOX_URL + uid);
+		URL url = new URL(ConstantsEnum.SANDBOX_URL.getValue() + uid + "/");
 		HttpsURLConnection conn = getSandBoxConnection(url, HttpMethod.GET.name());
 		return getTranslatedText(conn);
 	}

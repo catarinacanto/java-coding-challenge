@@ -8,65 +8,42 @@
  <body> 
   <h1>Unbabel</h1> 
   <form action="/translate" method="post"> 
-   <div class="row"> 
-    <input type="text" name="text" id="text"> 
-    <label for="text">Translate</label> 
+   <div class="text-input"> 
+    <input type="text" id="input1" name="text" placeholder="Insert text to translate here"> 
+    <label for="input1">Translate</label> 
    </div> 
    <div class="languages"> 
     <div class="left"> 
-     <p>From:</p> 
-     <select name="source_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
+     <label for="source_language">From</label> 
+     <select id="source_language" name="source_language" placeholder="From"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
     </div> 
     <div class="right"> 
-     <p>To:</p> 
-     <select name="target_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
+     <label for="target_language">To</label> 
+     <select id="target_language" name="target_language"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="sp">Spanish</option> <option value="it">Italian</option> </select> 
     </div> 
    </div> 
-   <table class="table" style="width:50%"> 
-    <tbody> 
-     <tr> 
-      <th>From Language</th> 
-      <th>Original Text</th> 
-      <th>To Language</th> 
-      <th>Translated Text</th> 
-      <th>Status</th> 
-     </tr> 
-    </tbody> 
-    <tbody uid="abf67e3a05"> 
-     <tr> 
-      <td>en</td> 
-      <td>hello</td> 
-      <td>pt</td> 
-      <td translated="">Olá</td> 
-      <td status="new">completed</td> 
-     </tr> 
-    </tbody> 
-    <tbody uid="9868d1b6bd"> 
-     <tr> 
-      <td>en</td> 
-      <td>hello</td> 
-      <td>pt</td> 
-      <td translated="">Olá</td> 
-      <td status="new">completed</td> 
-     </tr> 
-    </tbody> 
-    <tbody uid="5712469d07"> 
-     <tr> 
-      <td>en</td> 
-      <td>hello</td> 
-      <td>pt</td> 
-      <td translated="">Olá</td> 
-      <td status="new">completed</td> 
-     </tr> 
-    </tbody> 
-    <tbody uid="8fcff6e68d">
-     <td>en</td>
-     <td>hello</td>
-     <td>pt</td>
-     <td translated=""></td>
-     <td status="new">new</td>
-    </tbody>
-   </table> 
+   <div class="table-wrapper"> 
+    <table class="table" style="width:50%"> 
+     <thead> 
+      <tr> 
+       <th>From Language</th> 
+       <th>Original Text</th> 
+       <th>To Language</th> 
+       <th>Translated Text</th> 
+       <th>Status</th> 
+      </tr> 
+     </thead> 
+     <tbody uid="34a9dc08e0"> 
+      <tr> 
+       <td>en</td> 
+       <td>hello</td> 
+       <td>pt</td> 
+       <td translated="">Olá</td> 
+       <td status="new">completed</td> 
+      </tr> 
+     </tbody> 
+    </table> 
+   </div> 
    <div class="button"> 
     <input type="submit" value="Submit"> 
    </div> 
