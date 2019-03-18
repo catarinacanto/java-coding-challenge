@@ -1,3 +1,7 @@
-/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/translationService/TranslationService.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/models/TranslationResponse.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/html/HtmlParser.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/TranslationService.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/html/HtmlWriterService.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/constants/ConstantsEnum.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/App.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/controllers/TranslationController.java

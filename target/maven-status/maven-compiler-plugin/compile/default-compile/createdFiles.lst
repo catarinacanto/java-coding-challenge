@@ -1,3 +1,7 @@
+com/ccanto/unbabel/constants/ConstantsEnum.class
+com/ccanto/unbabel/services/html/HtmlWriterService.class
+com/ccanto/unbabel/services/html/HtmlParser.class
+com/ccanto/unbabel/models/TranslationResponse.class
 com/ccanto/unbabel/App.class
 com/ccanto/unbabel/controllers/TranslationController.class
-com/ccanto/unbabel/services/translationService/TranslationService.class
+com/ccanto/unbabel/services/TranslationService.class
