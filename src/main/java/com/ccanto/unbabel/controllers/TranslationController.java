@@ -29,14 +29,12 @@ public class TranslationController {
 	private HtmlWriterService htmlWriter;
 	private Logger log = LogManager.getLogger(TranslationController.class);
 
-	private List<TranslationResponse> responseList = new ArrayList<>();
 
 	@RequestMapping(value = "/translate", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
 	public RedirectView getTextToTranslate(@RequestParam(value = "text") String text, @RequestParam(value = "source_language") String sourceLanguage, @RequestParam(value = "target_language") String targetLanguage) {
 		TranslationResponse response = null;
 		try {
 			response = translationService.execute(text, sourceLanguage, targetLanguage);
-			responseList.add(response);
 			repository.save(response);
 			htmlWriter.generatePage(response);
 		} catch (IOException e) {
@@ -48,8 +46,11 @@ public class TranslationController {
 	@RequestMapping(value = "/getTranslation", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
 	public RedirectView getResponse() {
 		try {
-			for (TranslationResponse response : responseList) {
+			for (TranslationResponse response : repository.findAll()) {
 				TranslationResponse newResponse = translationService.execute(response.getUid());
+				response.setStatus(newResponse.getStatus());
+				response.setTranslatedText(newResponse.getTranslatedText());
+				repository.save(response);
 				htmlWriter.generatePage(newResponse);
 			}
 		} catch (IOException e) {
@@ -59,9 +60,9 @@ public class TranslationController {
 	}
 
 	@RequestMapping(value = "/delete")
-	public RedirectView delete(){
+	public RedirectView delete() {
 		try {
-			for (TranslationResponse response : responseList) {
+			for (TranslationResponse response : repository.findAll()) {
 				TranslationResponse newResponse = translationService.execute(response.getUid());
 				htmlWriter.delete(newResponse);
 			}
