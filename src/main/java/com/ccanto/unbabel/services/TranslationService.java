@@ -42,7 +42,7 @@ public class TranslationService {
 		return conn;
 	}
 
-	public JSONObject formRequest(String text, String sourceLanguage, String targetLanguage) {
+	private JSONObject formRequest(String text, String sourceLanguage, String targetLanguage) {
 		JSONObject request = new JSONObject();
 
 		try {
@@ -76,7 +76,7 @@ public class TranslationService {
 		return objectMapper.readValue(jsonResponse.toString(), TranslationResponse.class);
 	}
 
-	public TranslationResponse getTranslatedText(HttpsURLConnection conn) throws IOException {
+	private TranslationResponse getTranslatedText(HttpsURLConnection conn) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
