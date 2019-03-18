@@ -1,5 +1,4 @@
 
-
 html{
     margin: 0;
     width: 100%;
@@ -18,15 +17,23 @@ body {
     flex-direction: column;
 }
 
+
+@keyframes tracking-in-contract{0%{letter-spacing:1em;opacity:0}40%{opacity:.6}100%{letter-spacing:normal;opacity:1}}
+h1{animation:tracking-in-contract .8s cubic-bezier(.215,.61,.355,1.000) both}
 h1 {
-    margin-top: 0;
-    height: 150px;
+    margin-top: 100px;
     color: #ffffff;
-    background: #3a81da;
     font-size: 4rem;
-    width: 100%;
     text-align: center;
     text-shadow: 5px 5px #0b0d22;
+
+}
+.header{
+    height: 250px;
+    margin-top: 0;
+    background: #3a81da;
+    width: 100%;
+
 }
 
 .form{
@@ -35,7 +42,7 @@ h1 {
 
 .text-input {
     position: relative;
-    margin-top: 30px;
+    margin-top: 60px;
     margin-bottom: 50px;
 }
 
