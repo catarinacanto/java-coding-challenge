@@ -1,4 +1,4 @@
-package com.ccanto.unbabel.services;
+package com.ccanto.unbabel.services.translation;
 
 import com.ccanto.unbabel.constants.ConstantsEnum;
 import com.ccanto.unbabel.dataacess.TranslationResponse;

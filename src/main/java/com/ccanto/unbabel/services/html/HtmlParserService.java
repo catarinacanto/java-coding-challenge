@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HtmlParser {
+public class HtmlParserService {
 
 	private Document doc;
 	private Element table;

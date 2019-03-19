@@ -12,7 +12,7 @@ public class HtmlWriterService {
 		String s;
 		StringBuilder html = new StringBuilder();
 		File file = new File("src/main/webapp/index.html");
-		HtmlParser parser = new HtmlParser();
+		HtmlParserService parser = new HtmlParserService();
 		try (FileReader fileReader = new FileReader(file)) {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			while ((s = bufferedReader.readLine()) != null) {
@@ -33,7 +33,7 @@ public class HtmlWriterService {
 		String s;
 		StringBuilder html = new StringBuilder();
 		File file = new File("src/main/webapp/index.html");
-		HtmlParser parser = new HtmlParser();
+		HtmlParserService parser = new HtmlParserService();
 		try (FileReader fileReader = new FileReader(file)) {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			while ((s = bufferedReader.readLine()) != null) {

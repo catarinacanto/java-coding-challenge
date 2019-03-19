@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class TranslationResponse {
+public class TranslationResponse{
 	@Id
 	private String uid;
 	@Column

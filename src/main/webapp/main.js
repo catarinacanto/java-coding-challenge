@@ -10,7 +10,7 @@ secondSelect.options.length = 0;
 var firstSelect = document.getElementById("source_language");
 firstSelect.options.length = 0;
 
-startFirstSelect = function() {
+function startFirstSelect() {
     for (var index in languageOptions) {
         firstSelect.options[firstSelect.options.length] = new Option(
             languageOptions[index],
@@ -20,7 +20,7 @@ startFirstSelect = function() {
 };
 startFirstSelect();
 
-setSecondSelect = function(value) {
+function setSecondSelect(value) {
     secondSelect.options.length = 0;
     for (var index in languageOptions) {
         if (index !== value){
@@ -31,7 +31,7 @@ setSecondSelect = function(value) {
     }
 };
 
-selectFirstOption = function() {
+function selectFirstOption() {
     console.log(firstSelect.value);
     setSecondSelect(firstSelect.value);
 };

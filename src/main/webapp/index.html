@@ -4,12 +4,11 @@
   <title>Unbabel</title> 
   <meta charset="UTF-8"> 
   <link rel="stylesheet" href="style.css"> 
-  <script src="main.js"></script>
- </head>
- <body>
+ </head> 
+ <body> 
   <div class="header"> 
-   <h1>Unbabel</h1>
-  </div>
+   <h1>Unbabel</h1> 
+  </div> 
   <div class="form"> 
    <form action="/translate" method="post"> 
     <div class="text-input"> 
@@ -19,11 +18,11 @@
     <div class="languages"> 
      <div class="left"> 
       <label for="source_language">From</label> 
-      <select id="source_language" name="source_language" placeholder="From" onchange="selectFirstOption()"> <option value="en">English</option> <option value="pt">Portuguese</option> <option value="es">Spanish</option> <option value="fr">French</option> </select> 
+      <select id="source_language" name="source_language" placeholder="From" onchange="selectFirstOption()"> </select> 
      </div> 
      <div class="right"> 
       <label for="target_language">To</label> 
-      <select id="target_language" name="target_language"> <option value="pt">Portuguese</option> <option value="en">English</option> <option value="es">Spanish</option> <option value="fr">French</option> </select> 
+      <select id="target_language" name="target_language"> </select> 
      </div> 
     </div> 
     <div class="table-wrapper"> 
@@ -36,34 +35,28 @@
         <th>Translated</th> 
         <th>Status</th> 
        </tr> 
-      </thead> 
-      <tbody uid="4c444be54d">
-       <td>en</td>
-       <td>hello</td>
-       <td>fr</td>
-       <td translated=""></td>
-       <td status="new">new</td>
-      </tbody>
+      </thead>  
      </table> 
     </div> 
-    <div class="submit">
+    <div class="submit"> 
      <input type="submit" value="Submit"> 
     </div> 
-   </form>
-  </div>
+   </form> 
+  </div> 
   <div class="form"> 
    <form action="/getTranslation" method="get"> 
-    <div class="update">
+    <div class="update"> 
      <input type="submit" value="Update"> 
     </div> 
-   </form>
-  </div>
+   </form> 
+  </div> 
   <div class="form"> 
    <form action="/delete"> 
-    <div class="delete">
-     <input type="submit" value="Delete">
+    <div class="delete"> 
+     <input type="submit" value="Delete"> 
     </div> 
-   </form>
-  </div>
+   </form> 
+  </div> 
+  <script src="main.js"></script> 
  </body>
 </html>
