@@ -6,19 +6,10 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 
 @Service
-public class HtmlWriterService {
+public class HtmlWriterService extends AbstractWriter{
 
 	public void generatePage(TranslationResponse response) throws IOException {
-		String s;
-		StringBuilder html = new StringBuilder();
-		File file = new File("src/main/webapp/index.html");
-		HtmlParserService parser = new HtmlParserService();
-		try (FileReader fileReader = new FileReader(file)) {
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while ((s = bufferedReader.readLine()) != null) {
-				html.append(s);
-			}
-		}
+		read();
 		try (FileWriter fileWriter = new FileWriter(file)) {
 			if (html.toString().contains(response.getUid())){
 				fileWriter.write(parser.update(html.toString(), response));
@@ -30,16 +21,7 @@ public class HtmlWriterService {
 
 
 	public void delete(TranslationResponse response) throws IOException {
-		String s;
-		StringBuilder html = new StringBuilder();
-		File file = new File("src/main/webapp/index.html");
-		HtmlParserService parser = new HtmlParserService();
-		try (FileReader fileReader = new FileReader(file)) {
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while ((s = bufferedReader.readLine()) != null) {
-				html.append(s);
-			}
-		}
+		read();
 		try (FileWriter fileWriter = new FileWriter(file)) {
 			if (html.toString().contains(response.getUid())){
 				fileWriter.write(parser.delete(html.toString(), response));

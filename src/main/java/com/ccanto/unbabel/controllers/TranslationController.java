@@ -27,7 +27,7 @@ public class TranslationController {
 	private Logger log = LogManager.getLogger(TranslationController.class);
 
 	@RequestMapping(value = "/translate")
-	public RedirectView translate(@RequestParam(value = "text") String text, @RequestParam(value = "source_language") String sourceLanguage, @RequestParam(value = "target_language") String targetLanguage) {
+	public RedirectView requestTranslation(@RequestParam(value = "text") String text, @RequestParam(value = "source_language") String sourceLanguage, @RequestParam(value = "target_language") String targetLanguage) {
 		TranslationResponse response = null;
 		try {
 			response = translationService.execute(text, sourceLanguage, targetLanguage);

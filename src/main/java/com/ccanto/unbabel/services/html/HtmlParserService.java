@@ -54,5 +54,4 @@ public class HtmlParserService {
 		return doc.html();
 	}
 
-
 }
