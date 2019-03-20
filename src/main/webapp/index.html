@@ -3,78 +3,94 @@
  <head> 
   <title>Unbabel</title> 
   <meta charset="UTF-8"> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <link rel="stylesheet" href="style.css"> 
  </head> 
  <body> 
-  <div class="header"> 
-   <h1>Unbabel</h1> 
-  </div> 
-  <div class="form"> 
-   <form action="/translate" method="post"> 
-    <div class="text-input"> 
-     <input type="text" id="input1" name="text" placeholder="Insert text to translate here"> 
-     <label for="input1">Translate</label> 
+  <div class="container-fluid"> 
+   <div class="jumbotron jumbotron-fluid"> 
+    <div class="container"> 
+     <h1 class="display-1">Unbabel</h1> 
     </div> 
-    <div class="languages"> 
-     <div class="left"> 
-      <label for="source_language">From</label> 
-      <select id="source_language" name="source_language" placeholder="From" onchange="selectFirstOption()"> </select> 
+   </div> 
+   <div class="row"> 
+    <div class="col-3"></div> 
+    <div class="col-6"> 
+     <div class="form"> 
+      <form action="/translate" method="post"> 
+       <div class="form-group"> 
+        <label for="input1">Translate</label> 
+        <input type="text" id="input1" name="text" class="form-control" placeholder="Insert text to translate here"> 
+       </div> 
+       <div class="languages form-group row"> 
+        <div class="col-5"> 
+         <label for="source_language">From</label> 
+         <select id="source_language" name="source_language" onchange="selectFirstOption()" placeholder="From" class="form-control"> <option value="" selected disabled>Select a language</option> </select> 
+        </div> 
+        <div class="col-2 icon-container"> 
+         <button id="change-languages-button" type="button" class="btn btn-primary icon-button" disabled="true" onclick="changeLanguages()"><i class="fas fa-exchange-alt"></i> </button> 
+        </div> 
+        <div class="col-5"> 
+         <label for="target_language">To</label> 
+         <select class="form-control" id="target_language" name="target_language" onchange="selectSecondLanguage(value)"> <option value="" selected disabled>Select a language</option> </select> 
+        </div> 
+       </div> 
+       <div class="submit centered"> 
+        <button id="submit-button" type="submit" class="btn btn-primary" disabled="true">Submit</button> 
+       </div> 
+      </form> 
      </div> 
-     <div class="right"> 
-      <label for="target_language">To</label> 
-      <select id="target_language" name="target_language"> </select> 
+     <div> 
+      <table class="table table-hover"> 
+       <thead class="thead-dark"> 
+        <tr> 
+         <th scope="col" class="table-col-small">From</th> 
+         <th scope="col">Original</th> 
+         <th scope="col" class="table-col-small">To</th> 
+         <th scope="col">Translated</th> 
+         <th scope="col" class="table-col-medium">Status</th> 
+        </tr> 
+       </thead> 
+       <tbody> 
+        <tr uid="160e411b3d"> 
+         <td>en</td> 
+         <td>hello</td> 
+         <td>es</td> 
+         <td translated="">Hola</td> 
+         <td status="new">completed</td> 
+        </tr> 
+        <tr uid="5bbd677641"> 
+         <td>en</td> 
+         <td>bye</td> 
+         <td>es</td> 
+         <td translated="">adiós</td> 
+         <td status="new">completed</td> 
+        </tr>  
+       </tbody> 
+      </table> 
+     </div> 
+     <div class="row"> 
+      <div class="col-4"></div> 
+      <div class="form align-right col-2"> 
+       <form action="/getTranslation" method="get"> 
+        <button class="btn btn-primary" type="submit">Update</button> 
+       </form> 
+      </div> 
+      <div class="form align-left col-2"> 
+       <form action="/delete"> 
+        <button class="btn btn-danger" type="submit">Delete</button> 
+       </form> 
+      </div> 
+      <div class="col-4"></div> 
      </div> 
     </div> 
-    <div class="table-wrapper"> 
-     <table class="table" style="width:50%"> 
-      <thead> 
-       <tr> 
-        <th>From</th> 
-        <th>Original</th> 
-        <th>To</th> 
-        <th>Translated</th> 
-        <th>Status</th> 
-       </tr> 
-      </thead> 
-      <tbody uid="160e411b3d"> 
-       <tr> 
-        <td>en</td> 
-        <td>hello</td> 
-        <td>es</td> 
-        <td translated="">Hola</td> 
-        <td status="new">completed</td> 
-       </tr> 
-      </tbody> 
-      <tbody uid="5bbd677641"> 
-       <tr> 
-        <td>en</td> 
-        <td>bye</td> 
-        <td>es</td> 
-        <td translated="">adiós</td> 
-        <td status="new">completed</td> 
-       </tr> 
-      </tbody> 
-     </table> 
-    </div> 
-    <div class="submit"> 
-     <input type="submit" value="Submit"> 
-    </div> 
-   </form> 
+    <div class="col-3"></div> 
+   </div> 
   </div> 
-  <div class="form"> 
-   <form action="/getTranslation" method="get"> 
-    <div class="update"> 
-     <input type="submit" value="Update"> 
-    </div> 
-   </form> 
-  </div> 
-  <div class="form"> 
-   <form action="/delete"> 
-    <div class="delete"> 
-     <input type="submit" value="Delete"> 
-    </div> 
-   </form> 
-  </div> 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
   <script src="main.js"></script> 
  </body>
 </html>

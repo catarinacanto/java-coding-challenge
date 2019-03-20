@@ -7,5 +7,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TranslationRepository extends CrudRepository<TranslationResponse, String>{
 
+	/**
+	 * Receives
+	 * @param uid
+	 * @return the row with that uid
+	 */
 	TranslationResponse findByUid(String uid);
 }

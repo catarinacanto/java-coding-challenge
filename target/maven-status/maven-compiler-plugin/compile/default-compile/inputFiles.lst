@@ -1,6 +1,7 @@
-/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/html/HtmlParser.java
-/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/TranslationService.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/translation/TranslationService.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/dataacess/TranslationResponse.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/html/HtmlParserService.java
+/Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/AbstractWriter.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/dataacess/TranslationRepository.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/services/html/HtmlWriterService.java
 /Users/catarinacanto/Documents/Unbabel/java-coding-challenge/unbabel/src/main/java/com/ccanto/unbabel/constants/ConstantsEnum.java

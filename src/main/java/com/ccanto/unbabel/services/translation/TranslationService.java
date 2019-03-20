@@ -21,12 +21,14 @@ public class TranslationService {
 	private Logger log = LogManager.getLogger(TranslationService.class);
 
 
-	public TranslationResponse execute(String uid) throws IOException {
-		URL url = new URL(ConstantsEnum.SANDBOX_URL.getValue() + uid + "/");
-		HttpsURLConnection conn = getSandBoxConnection(url, HttpMethod.GET.name());
-		return getTranslatedText(conn);
-	}
-
+	/**
+	 * Executed when a new request is made, receives
+	 * @param text
+	 * @param sourceLanguage
+	 * @param targetLanguage
+	 * @return the new request object
+	 * @throws IOException
+	 */
 	public TranslationResponse execute(String text, String sourceLanguage, String targetLanguage) throws IOException {
 		URL url = new URL(ConstantsEnum.SANDBOX_URL.getValue());
 		HttpsURLConnection conn = getSandBoxConnection(url,HttpMethod.POST.name());
@@ -34,6 +36,26 @@ public class TranslationService {
 		return getTranslation(conn, request);
 	}
 
+	/**
+	 * Executed when an update request is made, receives
+	 * @param uid
+	 * @return the new updated object
+	 * @throws IOException
+	 */
+	public TranslationResponse execute(String uid) throws IOException {
+		URL url = new URL(ConstantsEnum.SANDBOX_URL.getValue() + uid + "/");
+		HttpsURLConnection conn = getSandBoxConnection(url, HttpMethod.GET.name());
+		return getTranslatedText(conn);
+	}
+
+	/**
+	 * Receives
+	 * @param url
+	 * @param method
+	 * sets the connection and required headers
+	 * @return the connection to unbabel sandbox API
+	 * @throws IOException
+	 */
 	private HttpsURLConnection getSandBoxConnection(URL url,String method) throws IOException {
 		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 		conn.setReadTimeout(100000);
@@ -46,6 +68,13 @@ public class TranslationService {
 		return conn;
 	}
 
+	/**
+	 * Receives
+	 * @param text
+	 * @param sourceLanguage
+	 * @param targetLanguage
+	 * @return the json object to send to the server as a request
+	 */
 	private JSONObject formRequest(String text, String sourceLanguage, String targetLanguage) {
 		JSONObject request = new JSONObject();
 
@@ -60,6 +89,15 @@ public class TranslationService {
 		return request;
 	}
 
+
+	/**
+	 * Receives
+	 * @param conn
+	 * @param request
+	 * reads input from the server and
+	 * @return the new object with the translation request
+	 * @throws IOException
+	 */
 	private TranslationResponse getTranslation(HttpsURLConnection conn, JSONObject request) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		OutputStream os = conn.getOutputStream();
@@ -80,9 +118,16 @@ public class TranslationService {
 		return objectMapper.readValue(jsonResponse.toString(), TranslationResponse.class);
 	}
 
+	/**
+	 * Receives HttpsURLConnection
+	 * @param conn
+	 * gets input from the server
+	 * @return the new object with the translated text
+	 * @throws IOException
+	 */
 	private TranslationResponse getTranslatedText(HttpsURLConnection conn) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), ConstantsEnum.UTF_8.getValue()));
 		String inputLine;
 		StringBuilder jsonResponse = new StringBuilder();
 

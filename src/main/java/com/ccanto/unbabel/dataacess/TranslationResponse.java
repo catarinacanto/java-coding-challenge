@@ -25,6 +25,18 @@ public class TranslationResponse{
 	private String text_format;
 	@Column
 	private String translatedText;
+	@Column
+	private String create_date;
+	@Column
+	private String update_date;
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 
 	public long getOrder_number() {
 		return order_number;
@@ -82,14 +94,6 @@ public class TranslationResponse{
 		this.text_format = text_format;
 	}
 
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-
 	public String getTranslatedText() {
 		return translatedText;
 	}
@@ -98,8 +102,24 @@ public class TranslationResponse{
 		this.translatedText = translatedText;
 	}
 
+	public String getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
+
+	public String getUpdate_date() {
+		return update_date;
+	}
+
+	public void setUpdate_date(String update_date) {
+		this.update_date = update_date;
+	}
+
 	@Override
 	public String toString() {
-		return "TranslationResponse{" + "order_number=" + order_number + ", price=" + price + ", source_language='" + source_language + '\'' + ", status='" + status + '\'' + ", target_language='" + target_language + '\'' + ", text='" + text + '\'' + ", text_format='" + text_format + '\'' + ", uid='" + uid + '\'' + ", translatedText='" + translatedText + '\'' + '}';
+		return "TranslationResponse{" + "uid='" + uid + '\'' + ", order_number=" + order_number + ", price=" + price + ", source_language='" + source_language + '\'' + ", status='" + status + '\'' + ", target_language='" + target_language + '\'' + ", text='" + text + '\'' + ", text_format='" + text_format + '\'' + ", translatedText='" + translatedText + '\'' + ", create_date='" + create_date + '\'' + ", update_date='" + update_date + '\'' + '}';
 	}
 }

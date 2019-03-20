@@ -12,41 +12,46 @@ import org.springframework.stereotype.Service;
 public class HtmlParserService {
 
 	private Document doc;
-	private Element table;
-	private Element tBody;
 
-	public String parse(String html, TranslationResponse response) {
+	/**
+	 * Receives
+	 * @param html
+	 * @param response
+	 * and appends new elements to the table body
+	 * @return the new document to be writen by the HtmlWriterService
+	 */
+	public String add(String html, TranslationResponse response) {
 		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
-		table = doc.getElementsByTag("table").get(0);
-		tBody = table.appendElement("tbody").attr("uid", response.getUid());
-		tBody.appendElement("td").text(response.getSource_language());
-		tBody.appendElement("td").text(response.getText());
-		tBody.appendElement("td").text(response.getTarget_language());
-		tBody.appendElement("td").attr("translated", "").text(response.getTranslatedText() == null ? "" : response.getTranslatedText());
-		tBody.appendElement("td").attr("status", response.getStatus()).text(response.getStatus());
+		Element tBody = doc.getElementsByTag(ConstantsEnum.TBODY.getValue()).get(0);
+		Element row = tBody.appendElement(ConstantsEnum.TR.getValue()).attr(ConstantsEnum.UID.getValue(), response.getUid());
+		row.appendElement(ConstantsEnum.TD.getValue()).text(response.getSource_language());
+		row.appendElement(ConstantsEnum.TD.getValue()).text(response.getText());
+		row.appendElement(ConstantsEnum.TD.getValue()).text(response.getTarget_language());
+		row.appendElement(ConstantsEnum.TD.getValue()).attr(ConstantsEnum.TRANSLATED.getValue(), "").text(response.getTranslatedText() == null ? "" : response.getTranslatedText());
+		row.appendElement(ConstantsEnum.TD.getValue()).attr(ConstantsEnum.STATUS.getValue(), response.getStatus()).text(response.getStatus());
 
 		return doc.html();
 	}
 
 	public String update(String html, TranslationResponse response) {
 		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
-		Elements tbody = doc.getElementsByTag("tbody");
-		for (Element body : tbody) {
-			Elements translation = body.getElementsByAttributeValue("uid", response.getUid());
+		Elements rows = doc.getElementsByTag(ConstantsEnum.TR.getValue());
+		for (Element row : rows) {
+			Elements translation = row.getElementsByAttributeValue(ConstantsEnum.UID.getValue(), response.getUid());
 			for (Element element : translation) {
-				element.getElementsByAttribute("status").get(0).text(response.getStatus());
-				element.getElementsByAttribute("translated").get(0).text(response.getTranslatedText() != null ? response.getTranslatedText() : "");
+				element.getElementsByAttribute(ConstantsEnum.STATUS.getValue()).get(0).text(response.getStatus());
+				element.getElementsByAttribute(ConstantsEnum.TRANSLATED.getValue()).get(0).text(response.getTranslatedText() != null ? String.valueOf(response.getTranslatedText()) : "");
 			}
 		}
 
 		return doc.html();
 	}
 
-	public String delete(String html, TranslationResponse response) {
+	public String delete(String html, String uid) {
 		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
-		Elements tbody = doc.getElementsByTag("tbody");
-		for (Element body : tbody) {
-			Elements translation = body.getElementsByAttributeValue("uid", response.getUid());
+		Elements rows = doc.getElementsByTag(ConstantsEnum.TR.getValue());
+		for (Element row : rows) {
+			Elements translation = row.getElementsByAttributeValue(ConstantsEnum.UID.getValue(), uid);
 			for (Element element : translation) {
 				element.remove();
 			}

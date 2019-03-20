@@ -8,6 +8,13 @@ public enum  ConstantsEnum {
 	TEXT("text"),
 	SOURCE_LANGUAGE("source_language"),
 	TARGET_LANGUAGE("target_language"),
+	TABLE("table"),
+	TBODY("tbody"),
+	TR("tr"),
+	UID("uid"),
+	TD("td"),
+	TRANSLATED("translated"),
+	STATUS("status"),
 	UTF_8("UTF-8");
 
 	private String value;

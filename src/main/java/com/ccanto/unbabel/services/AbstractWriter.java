@@ -1,15 +1,24 @@
-package com.ccanto.unbabel.services.html;
+package com.ccanto.unbabel.services;
+
+import com.ccanto.unbabel.services.html.HtmlParserService;
 
 import java.io.*;
 
+/**
+ *  * Abstract class to be extended to any class that writes in the "index.html" file
+ */
 public abstract class AbstractWriter {
 
 	protected File file;
 	protected StringBuilder html;
-	protected String s;
 	protected HtmlParserService parser;
 
+	/**
+	 * This method initializes and reads the current html page
+	 * @throws IOException
+	 */
 	protected void read() throws IOException {
+		String s;
 		html = new StringBuilder();
 		file = new File("src/main/webapp/index.html");
 		parser = new HtmlParserService();
