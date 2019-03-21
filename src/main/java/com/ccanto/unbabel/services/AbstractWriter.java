@@ -14,7 +14,7 @@ public abstract class AbstractWriter {
 	protected HtmlParserService parser;
 
 	/**
-	 * This method initializes and reads the current html page
+	 * Initializes and reads the current html page
 	 * @throws IOException
 	 */
 	protected void read() throws IOException {

@@ -1,6 +1,7 @@
 com/ccanto/unbabel/constants/ConstantsEnum.class
 com/ccanto/unbabel/services/html/HtmlWriterService.class
 com/ccanto/unbabel/services/translation/TranslationService.class
+com/ccanto/unbabel/models/Translation.class
 com/ccanto/unbabel/services/AbstractWriter.class
 com/ccanto/unbabel/services/html/HtmlParserService.class
 com/ccanto/unbabel/dataacess/TranslationRepository.class

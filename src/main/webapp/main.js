@@ -93,8 +93,7 @@ function disableButtons() {
 }
 
 function deleteRows() {
-    var rows = document.getElementsByTagName("tr"), index;
-    for (index = rows.length - 1; index >= 0; index--) {
-        rows[index].parentNode.removeChild(rows[index]);
-    }
+        var elem = document.getElementById('table-body');
+        elem.remove();
+        this.remove();
 }

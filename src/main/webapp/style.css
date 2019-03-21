@@ -29,3 +29,25 @@
 .table-col-medium {
     width: 10%;
 }
+.display-1{
+    font-family: "Helvetica";
+    text-shadow: #4a6674 8px 5px;
+    text-transform: uppercase;
+}
+
+.jumbotron-fluid{
+    background-color: #82a9c8;
+}
+
+body{
+    background-image: url(https://newevolutiondesigns.com/images/freebies/white-wallpaper-18.jpg);
+}
+
+
+.btn-primary{
+    background-color: #6396c8;
+}
+
+btn-danger{
+    background-color: #8a0100;
+}

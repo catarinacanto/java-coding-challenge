@@ -95,8 +95,7 @@ public class TranslationController {
 	 * also updated
 	 */
 	@RequestMapping(value = "/getTranslation")
-	public synchronized RedirectView update() {
-		List<TranslationResponse> toRemove = new ArrayList<>();
+	public RedirectView update() {
 		try {
 			for (TranslationResponse response : translationList) {
 				Translation translation = new Translation();
@@ -105,18 +104,26 @@ public class TranslationController {
 				if (!newResponse.getStatus().equals(response.getStatus())) {
 					response.setStatus(newResponse.getStatus()).setTranslatedText(newResponse.getTranslatedText()).setUpdate_date(String.valueOf(LocalDateTime.now()));
 					repository.save(response);
-					System.out.println(response.getTranslatedText());
 					translation.setUid(response.getUid()).setStatus(response.getStatus()).setTranslated(response.getTranslatedText()).setFrom(response.getSource_language()).setTo(response.getTarget_language()).setOriginal(response.getText());
 					htmlWriter.generatePage(translation);
-					toRemove.add(response);
 					return new RedirectView("/");
 				}
 			}
-			translationList.removeAll(toRemove);
 		} catch (IOException e) {
 			log.debug(e.getMessage());
 		}
 		return new RedirectView("/");
+	}
+
+	@RequestMapping(value = "/delete")
+	public RedirectView delete(){
+		try {
+			htmlWriter.delete();
+		} catch (IOException e) {
+			log.error("Error deleting", e);
+		}
+
+		return new RedirectView("");
 	}
 
 }

@@ -108,7 +108,7 @@ public class TranslationService{
 		writer.close();
 		os.close();
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), ConstantsEnum.UTF_8.getValue()));
 		String inputLine;
 		StringBuilder jsonResponse = new StringBuilder();
 

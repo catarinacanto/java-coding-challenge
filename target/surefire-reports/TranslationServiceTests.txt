@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: TranslationServiceTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.824 s <<< FAILURE! - in TranslationServiceTests
+execute(TranslationServiceTests)  Time elapsed: 1.292 s  <<< ERROR!
+java.io.IOException: Server returned HTTP response code: 400 for URL: https://sandbox.unbabel.com/tapi/v2/translation/
+	at TranslationServiceTests.execute(TranslationServiceTests.java:56)
+

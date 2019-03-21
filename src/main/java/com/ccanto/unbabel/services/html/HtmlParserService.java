@@ -48,4 +48,16 @@ public class HtmlParserService {
 		return doc.html();
 	}
 
+	public String delete(String html) {
+		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
+		Element tBody = doc.getElementsByTag(ConstantsEnum.TBODY.getValue()).get(0);
+		if (!tBody.childNodes().isEmpty()){
+			Elements rows = tBody.getElementsByTag(ConstantsEnum.TR.getValue());
+			for (Element row : rows){
+				row.remove();
+			}
+		}
+
+		return doc.html();
+	}
 }
