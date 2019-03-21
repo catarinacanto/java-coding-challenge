@@ -3,6 +3,7 @@ package com.ccanto.unbabel.controllers;
 import com.ccanto.unbabel.constants.ConstantsEnum;
 import com.ccanto.unbabel.dataacess.TranslationRepository;
 import com.ccanto.unbabel.dataacess.TranslationResponse;
+import com.ccanto.unbabel.models.Translation;
 import com.ccanto.unbabel.services.translation.TranslationService;
 import com.ccanto.unbabel.services.html.HtmlWriterService;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +17,11 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 @RestController
@@ -29,8 +35,12 @@ public class TranslationController {
 
 	@Autowired
 	private HtmlWriterService htmlWriter;
+
 	private Logger log = LogManager.getLogger(TranslationController.class);
-	private List<TranslationResponse> responseList = new ArrayList();
+
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
+
+	private List<TranslationResponse> translationList = new ArrayList<>();
 
 
 	/**
@@ -45,20 +55,39 @@ public class TranslationController {
 	 */
 	@RequestMapping(value = "/translate")
 	public RedirectView requestTranslation(@RequestParam(value = "text") String text, @RequestParam(value = "source_language") String sourceLanguage, @RequestParam(value = "target_language") String targetLanguage) {
+		Translation translation = new Translation();
+		String uid = UUID.randomUUID().toString();
+		translation.setFrom(sourceLanguage).setOriginal(text).setTo(targetLanguage).setStatus("new").setUid(uid.substring(0, 7) + uid.substring(9, 12));
+		try {
+			htmlWriter.generatePage(translation);
+		} catch (IOException e) {
+			log.error("Error generating html", e);
+		}
+		executor.submit(() -> sendRequest(translation));
+		return new RedirectView("/");
+	}
+
+	private synchronized void sendRequest(Translation translation) {
 		TranslationResponse response;
 		try {
-			if (text != null && targetLanguage != null && sourceLanguage != null) {
-				response = translationService.execute(text, sourceLanguage, targetLanguage);
-				response.setCreate_date(String.valueOf(LocalDateTime.now()));
-				repository.save(response);
-				responseList.add(response);
-				htmlWriter.generatePage(response);
-			}
+			response = translationService.execute(translation.getOriginal(), translation.getFrom(), translation.getTo(), translation.getUid());
+			response.setCreate_date(String.valueOf(LocalDateTime.now()));
+			translationList.add(response);
+			repository.save(response);
+
 		} catch (IOException e) {
 			log.debug(e.getMessage());
 		}
-		update();
-		return new RedirectView("/");
+	}
+
+	private void updateRequest(String uid) {
+		TranslationResponse response;
+		try {
+			response = translationService.execute(uid);
+			repository.save(response);
+		} catch (IOException e) {
+			log.error("Error updating request", e);
+		}
 	}
 
 	/**
@@ -71,16 +100,17 @@ public class TranslationController {
 	 * also updated
 	 */
 	@RequestMapping(value = "/getTranslation")
-	public RedirectView update() {
+	public synchronized RedirectView update() {
 		try {
-			for (TranslationResponse response : repository.findAll()) {
+			for (TranslationResponse response : translationList) {
+				Translation translation = new Translation();
+
 				TranslationResponse newResponse = translationService.execute(response.getUid());
 				if (!newResponse.getStatus().equals(response.getStatus())) {
-					response.setStatus(newResponse.getStatus());
-					response.setTranslatedText(newResponse.getTranslatedText());
-					response.setUpdate_date(String.valueOf(LocalDateTime.now()));
+					response.setStatus(newResponse.getStatus()).setTranslatedText(newResponse.getTranslatedText()).setUpdate_date(String.valueOf(LocalDateTime.now()));
 					repository.save(response);
-					htmlWriter.generatePage(newResponse);
+					translation.setUid(response.getUid()).setStatus(response.getStatus()).setTranslated(response.getTranslatedText());
+					htmlWriter.generatePage(translation);
 				}
 			}
 		} catch (IOException e) {

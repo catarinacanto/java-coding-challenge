@@ -16,7 +16,7 @@ import java.io.*;
 import java.net.URL;
 
 @Service
-public class TranslationService {
+public class TranslationService{
 
 	private Logger log = LogManager.getLogger(TranslationService.class);
 
@@ -29,10 +29,10 @@ public class TranslationService {
 	 * @return the new request object
 	 * @throws IOException
 	 */
-	public TranslationResponse execute(String text, String sourceLanguage, String targetLanguage) throws IOException {
+	public TranslationResponse execute(String text, String sourceLanguage, String targetLanguage, String uid) throws IOException {
 		URL url = new URL(ConstantsEnum.SANDBOX_URL.getValue());
 		HttpsURLConnection conn = getSandBoxConnection(url,HttpMethod.POST.name());
-		JSONObject request = formRequest(text, sourceLanguage, targetLanguage);
+		JSONObject request = formRequest(text, sourceLanguage, targetLanguage, uid);
 		return getTranslation(conn, request);
 	}
 
@@ -75,10 +75,11 @@ public class TranslationService {
 	 * @param targetLanguage
 	 * @return the json object to send to the server as a request
 	 */
-	private JSONObject formRequest(String text, String sourceLanguage, String targetLanguage) {
+	private JSONObject formRequest(String text, String sourceLanguage, String targetLanguage, String uid) {
 		JSONObject request = new JSONObject();
 
 		try {
+			request.put(ConstantsEnum.UID.getValue(), uid);
 			request.put(ConstantsEnum.TEXT.getValue(), text);
 			request.put(ConstantsEnum.SOURCE_LANGUAGE.getValue(), sourceLanguage);
 			request.put(ConstantsEnum.TARGET_LANGUAGE.getValue(), targetLanguage);
@@ -137,8 +138,5 @@ public class TranslationService {
 		in.close();
 		return objectMapper.readValue(jsonResponse.toString(), TranslationResponse.class);
 	}
-
-
-
 
 }

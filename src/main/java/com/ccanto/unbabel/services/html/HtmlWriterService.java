@@ -1,6 +1,7 @@
 package com.ccanto.unbabel.services.html;
 
 import com.ccanto.unbabel.dataacess.TranslationResponse;
+import com.ccanto.unbabel.models.Translation;
 import com.ccanto.unbabel.services.AbstractWriter;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +17,15 @@ public class HtmlWriterService extends AbstractWriter {
 	 * else it adds a new request on the table.
 	 * @throws IOException
 	 */
-	public void generatePage(TranslationResponse response) throws IOException {
+	public synchronized void generatePage(Translation response) throws IOException {
 		read();
 		try (FileWriter fileWriter = new FileWriter(file)) {
-			if (html.toString().contains(response.getUid())){
-				fileWriter.write(parser.update(html.toString(), response));
-			}else {
+			if (!html.toString().contains(response.getUid())){
 				fileWriter.write(parser.add(html.toString(), response));
+			} else {
+				fileWriter.write(parser.update(html.toString(), response));
 			}
 		}
 	}
 
-	/**
-	 * Receives
-	 * @param response and checks if there's already request or translation with that uid on
-	 * the html table, if so, deletes it
-	 * @throws IOException
-	 */
-	public void delete(TranslationResponse response) throws IOException {
-		read();
-		try (FileWriter fileWriter = new FileWriter(file)) {
-			if (html.toString().contains(response.getUid())){
-				fileWriter.write(parser.delete(html.toString(), response));
-			}
-		}
-
-	}
 }
