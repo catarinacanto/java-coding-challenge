@@ -12,5 +12,8 @@ public interface TranslationRepository extends CrudRepository<TranslationRespons
 	 * @param uid
 	 * @return the row with that uid
 	 */
-	TranslationResponse findByUid(String uid);
+
+
+
+
 }

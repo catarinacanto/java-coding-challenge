@@ -9,6 +9,7 @@ import com.ccanto.unbabel.services.html.HtmlWriterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -67,6 +68,10 @@ public class TranslationController {
 		return new RedirectView("/");
 	}
 
+	/**
+	 * Sends a request to unbabel sandbox api
+	 * @param translation
+	 */
 	private synchronized void sendRequest(Translation translation) {
 		TranslationResponse response;
 		try {
@@ -77,16 +82,6 @@ public class TranslationController {
 
 		} catch (IOException e) {
 			log.debug(e.getMessage());
-		}
-	}
-
-	private void updateRequest(String uid) {
-		TranslationResponse response;
-		try {
-			response = translationService.execute(uid);
-			repository.save(response);
-		} catch (IOException e) {
-			log.error("Error updating request", e);
 		}
 	}
 
@@ -101,6 +96,7 @@ public class TranslationController {
 	 */
 	@RequestMapping(value = "/getTranslation")
 	public synchronized RedirectView update() {
+		List<TranslationResponse> toRemove = new ArrayList<>();
 		try {
 			for (TranslationResponse response : translationList) {
 				Translation translation = new Translation();
@@ -109,10 +105,14 @@ public class TranslationController {
 				if (!newResponse.getStatus().equals(response.getStatus())) {
 					response.setStatus(newResponse.getStatus()).setTranslatedText(newResponse.getTranslatedText()).setUpdate_date(String.valueOf(LocalDateTime.now()));
 					repository.save(response);
-					translation.setUid(response.getUid()).setStatus(response.getStatus()).setTranslated(response.getTranslatedText());
+					System.out.println(response.getTranslatedText());
+					translation.setUid(response.getUid()).setStatus(response.getStatus()).setTranslated(response.getTranslatedText()).setFrom(response.getSource_language()).setTo(response.getTarget_language()).setOriginal(response.getText());
 					htmlWriter.generatePage(translation);
+					toRemove.add(response);
+					return new RedirectView("/");
 				}
 			}
+			translationList.removeAll(toRemove);
 		} catch (IOException e) {
 			log.debug(e.getMessage());
 		}

@@ -41,7 +41,7 @@ public class HtmlParserService {
 			Elements translation = row.getElementsByAttributeValue(ConstantsEnum.UID.getValue(), response.getUid());
 			for (Element element : translation) {
 				element.getElementsByAttribute(ConstantsEnum.STATUS.getValue()).get(0).text(response.getStatus());
-				element.getElementsByAttribute(ConstantsEnum.TRANSLATED.getValue()).get(0).text(response.getTranslated() != null ? String.valueOf(response.getTranslated()) : "");
+				element.getElementsByAttribute(ConstantsEnum.TRANSLATED.getValue()).get(0).text(response.getTranslated() != null ? response.getTranslated() : "");
 			}
 		}
 
