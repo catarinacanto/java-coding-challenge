@@ -34,88 +34,99 @@ public class TranslationResponse{
 		return uid;
 	}
 
-	public void setUid(String uid) {
+	public TranslationResponse setUid(String uid) {
 		this.uid = uid;
+		return this;
 	}
 
 	public long getOrder_number() {
 		return order_number;
 	}
 
-	public void setOrder_number(long order_number) {
+	public TranslationResponse setOrder_number(long order_number) {
 		this.order_number = order_number;
+		return this;
 	}
 
 	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public TranslationResponse setPrice(double price) {
 		this.price = price;
+		return this;
 	}
 
 	public String getSource_language() {
 		return source_language;
 	}
 
-	public void setSource_language(String source_language) {
+	public TranslationResponse setSource_language(String source_language) {
 		this.source_language = source_language;
+		return this;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public TranslationResponse setStatus(String status) {
 		this.status = status;
+		return this;
 	}
 
 	public String getTarget_language() {
 		return target_language;
 	}
 
-	public void setTarget_language(String target_language) {
+	public TranslationResponse setTarget_language(String target_language) {
 		this.target_language = target_language;
+		return this;
 	}
 
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
+	public TranslationResponse setText(String text) {
 		this.text = text;
+		return this;
 	}
 
 	public String getText_format() {
 		return text_format;
 	}
 
-	public void setText_format(String text_format) {
+	public TranslationResponse setText_format(String text_format) {
 		this.text_format = text_format;
+		return this;
 	}
 
 	public String getTranslatedText() {
 		return translatedText;
 	}
 
-	public void setTranslatedText(String translatedText) {
+	public TranslationResponse setTranslatedText(String translatedText) {
 		this.translatedText = translatedText;
+		return this;
 	}
 
 	public String getCreate_date() {
 		return create_date;
 	}
 
-	public void setCreate_date(String create_date) {
+	public TranslationResponse setCreate_date(String create_date) {
 		this.create_date = create_date;
+		return this;
 	}
 
 	public String getUpdate_date() {
 		return update_date;
 	}
 
-	public void setUpdate_date(String update_date) {
+	public TranslationResponse setUpdate_date(String update_date) {
 		this.update_date = update_date;
+		return this;
 	}
 
 	@Override

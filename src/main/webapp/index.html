@@ -53,20 +53,48 @@
         </tr> 
        </thead> 
        <tbody> 
-        <tr uid="160e411b3d"> 
+        <tr uid="b5e9cae8a3"> 
          <td>en</td> 
          <td>hello</td> 
          <td>es</td> 
          <td translated="">Hola</td> 
+         <td status="completed">completed</td> 
+        </tr> 
+        <tr uid="cd05cadb64"> 
+         <td>en</td> 
+         <td>hello</td> 
+         <td>de</td> 
+         <td translated="">Hallo</td> 
          <td status="new">completed</td> 
         </tr> 
-        <tr uid="5bbd677641"> 
+        <tr uid="f78e2280-3b07-4878-b3b9-c1ff9f20219a"> 
          <td>en</td> 
-         <td>bye</td> 
-         <td>es</td> 
-         <td translated="">adiós</td> 
-         <td status="new">completed</td> 
-        </tr>  
+         <td>hello</td> 
+         <td>pt</td> 
+         <td translated=""></td> 
+         <td status="new">new</td> 
+        </tr> 
+        <tr uid="189870d1-e1b3-4566-89e1-71296f2a92d1"> 
+         <td>en</td> 
+         <td>hello</td> 
+         <td>pt</td> 
+         <td translated=""></td> 
+         <td status="new">new</td> 
+        </tr> 
+        <tr uid="b526505cc2"> 
+         <td>en</td> 
+         <td>hello</td> 
+         <td>pt</td> 
+         <td translated=""></td> 
+         <td status="new">new</td> 
+        </tr> 
+        <tr uid="68cea6f1-5b6a-4ec7-81e0-e67ec57acadf">
+         <td>en</td>
+         <td>hello</td>
+         <td>pt</td>
+         <td translated=""></td>
+         <td status="new">new</td>
+        </tr>
        </tbody> 
       </table> 
      </div> 
@@ -78,9 +106,7 @@
        </form> 
       </div> 
       <div class="form align-left col-2"> 
-       <form action="/delete"> 
-        <button class="btn btn-danger" type="submit">Delete</button> 
-       </form> 
+       <button class="btn btn-danger" type="submit" onclick="deleteRows()">Delete</button> 
       </div> 
       <div class="col-4"></div> 
      </div> 

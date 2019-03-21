@@ -89,24 +89,4 @@ public class TranslationController {
 		return new RedirectView("/");
 	}
 
-	/**
-	 * When a user clicks the button "delete"
-	 *
-	 * @return a view to the same page with all the requests and translations deleted
-	 * all the requests are still saved on the database
-	 */
-	@RequestMapping(value = "/delete")
-	public RedirectView delete() {
-		try {
-			for (TranslationResponse response : responseList) {
-				if (!responseList.isEmpty()) {
-					htmlWriter.delete(response.getUid());
-				}
-			}
-		} catch (IOException e) {
-			log.debug(e.getMessage());
-		}
-		return new RedirectView("/");
-	}
-
 }

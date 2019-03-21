@@ -29,15 +29,15 @@ public class HtmlWriterService extends AbstractWriter {
 
 	/**
 	 * Receives
-	 * @param uid and checks if there's already request or translation with that uid on
+	 * @param response and checks if there's already request or translation with that uid on
 	 * the html table, if so, deletes it
 	 * @throws IOException
 	 */
-	public void delete(String uid) throws IOException {
+	public void delete(TranslationResponse response) throws IOException {
 		read();
 		try (FileWriter fileWriter = new FileWriter(file)) {
-			if (html.toString().contains(uid)){
-				fileWriter.write(parser.delete(html.toString(), uid));
+			if (html.toString().contains(response.getUid())){
+				fileWriter.write(parser.delete(html.toString(), response));
 			}
 		}
 

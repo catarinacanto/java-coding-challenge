@@ -47,11 +47,11 @@ public class HtmlParserService {
 		return doc.html();
 	}
 
-	public String delete(String html, String uid) {
+	public String delete(String html, TranslationResponse response) {
 		doc = Jsoup.parse(html, ConstantsEnum.UTF_8.getValue());
 		Elements rows = doc.getElementsByTag(ConstantsEnum.TR.getValue());
 		for (Element row : rows) {
-			Elements translation = row.getElementsByAttributeValue(ConstantsEnum.UID.getValue(), uid);
+			Elements translation = row.getElementsByAttributeValue(ConstantsEnum.UID.getValue(), response.getUid());
 			for (Element element : translation) {
 				element.remove();
 			}
