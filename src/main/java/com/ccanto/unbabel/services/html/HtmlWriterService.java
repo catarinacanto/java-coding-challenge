@@ -24,34 +24,21 @@ public class HtmlWriterService extends AbstractWriter {
 	 */
 	public synchronized void generatePage(Translation response) throws IOException {
 		read();
-		Writer fstream = null;
-		try {
-			fstream = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-			if (!html.toString().contains(response.getUid())) {
-				fstream.write(parser.add(html.toString(), response));
-			} else {
-				fstream.write(parser.update(html.toString(), response));
+		if (!html.toString().contains(response.getUid())) {
+			try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+				writer.write(parser.add(html.toString(), response));
 			}
-		} catch (IOException e) {
-			log.error("Error parsing html", e);
-		} finally {
-			if (fstream != null)
-				fstream.close();
+		} else {
+			try (Writer outputWriter = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+				outputWriter.write(parser.update(html.toString(), response));
+			}
 		}
-
 	}
 
 	public synchronized void delete() throws IOException {
 		read();
-		Writer fstream = null;
-		try {
-			fstream = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-			fstream.write(parser.delete(html.toString()));
-		} catch (IOException e) {
-			log.error("Error parsing html", e);
-		} finally {
-			if (fstream != null)
-				fstream.close();
+		try(Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8.name())){
+			writer.write(parser.delete(html.toString()));
 		}
 
 	}

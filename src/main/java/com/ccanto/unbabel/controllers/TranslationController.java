@@ -1,6 +1,5 @@
 package com.ccanto.unbabel.controllers;
 
-import com.ccanto.unbabel.constants.ConstantsEnum;
 import com.ccanto.unbabel.dataacess.TranslationRepository;
 import com.ccanto.unbabel.dataacess.TranslationResponse;
 import com.ccanto.unbabel.models.Translation;
@@ -9,20 +8,16 @@ import com.ccanto.unbabel.services.html.HtmlWriterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 
 @RestController
@@ -42,7 +37,6 @@ public class TranslationController {
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
 	private List<TranslationResponse> translationList = new ArrayList<>();
-
 
 	/**
 	 * When a user requests a new translation by clicking "submit" a new request for a translation is made to unbabel sandbox api,
@@ -70,15 +64,18 @@ public class TranslationController {
 
 	/**
 	 * Sends a request to unbabel sandbox api
+	 *
 	 * @param translation
 	 */
-	private synchronized void sendRequest(Translation translation) {
+	private void sendRequest(Translation translation) {
 		TranslationResponse response;
 		try {
-			response = translationService.execute(translation.getOriginal(), translation.getFrom(), translation.getTo(), translation.getUid());
-			response.setCreate_date(String.valueOf(LocalDateTime.now()));
-			translationList.add(response);
-			repository.save(response);
+			synchronized (this) {
+				response = translationService.execute(translation.getOriginal(), translation.getFrom(), translation.getTo(), translation.getUid());
+				response.setCreate_date(String.valueOf(LocalDateTime.now()));
+				translationList.add(response);
+				repository.save(response);
+			}
 
 		} catch (IOException e) {
 			log.debug(e.getMessage());
@@ -95,7 +92,7 @@ public class TranslationController {
 	 * also updated
 	 */
 	@RequestMapping(value = "/getTranslation")
-	public RedirectView update() {
+	public synchronized RedirectView update() {
 		try {
 			for (TranslationResponse response : translationList) {
 				Translation translation = new Translation();
@@ -116,7 +113,7 @@ public class TranslationController {
 	}
 
 	@RequestMapping(value = "/delete")
-	public RedirectView delete(){
+	public RedirectView delete() {
 		try {
 			htmlWriter.delete();
 		} catch (IOException e) {

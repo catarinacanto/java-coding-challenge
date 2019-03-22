@@ -3,7 +3,10 @@ var languageOptions = {
         en: "English",
         es: "Spanish",
         it: "Italian",
-        de: "German"
+        de: "German",
+        ru: "Russian",
+        ja: "Japanese"
+
     },
     secondSelect = document.getElementById("target_language"),
     firstSelect = document.getElementById("source_language"),
@@ -26,22 +29,20 @@ startFirstSelect();
 
 function setCompatibleLanguages(value) {
     switch (value) {
-        case 'pt':
-            return ['es', 'de'];
-        case 'de':
-            return ['pt'];
+        case 'en':
+            return ['pt', 'es', 'it', 'de', 'ru', 'ja'];
         default:
-            return [];
+            return ['en'];
     }
 }
 
 function setSecondSelect(value) {
-    var incompatible = setCompatibleLanguages(value);
-    disableButtons();
+    var compatible = setCompatibleLanguages(value);
+    disableChangeButton();
     secondSelect.options.length = 1;
     for (var index in languageOptions) {
         if (index !== value) {
-            if (!checkForMatch(incompatible, index)) {
+            if (checkForMatch(compatible, index)) {
                 secondSelect.options[secondSelect.options.length] = new Option(
                     languageOptions[index],
                     index);
@@ -51,9 +52,9 @@ function setSecondSelect(value) {
     secondSelect.selectedIndex = 0;
 };
 
-function checkForMatch(incompatibleLanguages, languageToMatch) {
-    for (var i = 0; i < incompatibleLanguages.length; i++) {
-        if (languageToMatch == incompatibleLanguages[i]) {
+function checkForMatch(compatibleLanguages, languageToMatch) {
+    for (var i = 0; i < compatibleLanguages.length; i++) {
+        if (languageToMatch == compatibleLanguages[i]) {
             return true;
         }
     }
@@ -73,9 +74,9 @@ function changeLanguages() {
 
 function selectSecondLanguage(value) {
     secondSelect.value = value;
-    enableButtons();
+    disableChangeButton();
     if (checkForMatch(setCompatibleLanguages(secondSelect.value), firstSelect.value)) {
-        disableChangeButton();
+        enableButtons();
     }
 }
 function disableChangeButton() {
