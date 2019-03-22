@@ -39,8 +39,9 @@ public class TranslationController {
 	private List<TranslationResponse> translationList = new ArrayList<>();
 
 	/**
-	 * When a user requests a new translation by clicking "submit" a new request for a translation is made to unbabel sandbox api,
-	 * this method receives
+	 * When a user requests a new translation by clicking "submit" button we create a model object translation, with a random id
+	 * and add it to the html table
+	 * the executor then sends the actual request to the api
 	 *
 	 * @param text
 	 * @param sourceLanguage
@@ -112,6 +113,10 @@ public class TranslationController {
 		return new RedirectView("/");
 	}
 
+	/**
+	 * deletes all rows in the html table
+	 * @return a new view to the page
+	 */
 	@RequestMapping(value = "/delete")
 	public RedirectView delete() {
 		try {
